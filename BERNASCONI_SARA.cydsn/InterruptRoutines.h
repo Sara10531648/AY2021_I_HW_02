@@ -9,7 +9,7 @@
  *
  * ========================================
 */
-//Ho definito come si chiama la mia interrupt e che funzioni dovrà avere a disposizione
+//Header Interrupt
 #ifndef __INTERRUPT_ROUTINES_H
     #define __INTERRUPT_ROUTINES_H
    #include "funzionidefinizione.h"

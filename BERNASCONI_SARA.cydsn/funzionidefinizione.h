@@ -13,16 +13,23 @@
     #define __FUNZIONI_DEFINIZIONE_H
     #include "cytypes.h"
     #include "project.h"
+    //Definisco una struttura  
     typedef struct {
-   char mode1;
-    uint8_t period1;
-    uint8_t compare1;
-    char mode2;
-    uint8_t period2;
-    uint8_t compare2;
+    //mode1:che tipo di comparazione deve usare il PWM_RED
+    char modeR;
+    //period1:periodo di PWM_RED
+    uint8_t periodR;
+    //compare1: valore compare usato per PWM_RED
+    uint8_t compareR;
+    //mode2:che tipo di comparazione deve usare il PWM_GREEN
+    char modeG;
+    //periodo2:periodo di PWM_GREEN
+    uint8_t periodG;
+     //compare1: valore compare usato per PWM_RED
+    uint8_t compareG;
     
 }conf;
-    
+    //Definisco la funzione che svolge il settaggio delle due pwm
     void LED_BLINK (conf c);
 #endif
 /* [] END OF FILE */

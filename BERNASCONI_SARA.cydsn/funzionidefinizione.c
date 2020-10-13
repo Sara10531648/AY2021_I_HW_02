@@ -14,62 +14,60 @@
 
 
 
-static void pwmmode1(char forma);
-static void pwmmode2(char forma);
-static void pwmperiodo1( uint8_t period);
-static void pwmperiodo2( uint8_t period);
-static void pwmcompare1(uint8_t compare);
-static void pwmcompare2(uint8_t compare);
+static void pwmmodeR(char forma);
+static void pwmmodeG(char forma);
+static void pwmperiodoR( uint8_t period);
+static void pwmperiodoG( uint8_t period);
+static void pwmcompareR(uint8_t compare);
+static void pwmcompareG(uint8_t compare);
 
 
 void LED_BLINK (conf c)
-{   
+{   //scrive 0 (counter value) sul counter register. Ottengo passagio preciso da una configurazione all'altra
     PWM_RED_WriteCounter(0);
     PWM_GREEN_WriteCounter(0);
-    pwmmode1(c.mode1);
-    pwmperiodo1(c.period1);
-    //PWM_RED_WritePeriod(c.period1);
-    pwmcompare1(c.compare1);
-    //PWM_RED_WriteCompare(c.compare1);
-    pwmmode2(c.mode2);
-    pwmperiodo2(c.period2);
-    //PWM_GREEN_WritePeriod(c.period2);
-    pwmcompare2(c.compare2);
-    //PWM_GREEN_WriteCompare(c.compare2);
+    pwmmodeR(c.modeR);
+    pwmperiodoR(c.periodR);
+    pwmcompareR(c.compareR);
+    pwmmodeG(c.modeG);
+    pwmperiodoG(c.periodG);
+    pwmcompareG(c.compareG);
 }
 //Definisco le tre funzioni contenute in write
-void pwmmode1(char mode1)
-{if (mode1=='G')
+void pwmmodeR(char modeR)
+{if (modeR=='G')
+//comparation mode:greater
 PWM_RED_SetCompareMode(PWM_RED__B_PWM__GREATER_THAN);
 else
+//comparation mode:less
 PWM_RED_SetCompareMode(PWM_RED__B_PWM__LESS_THAN);
 
 }
- void pwmmode2(char mode2)
-{if (mode2=='G')
+ void pwmmodeG(char modeG)
+{if (modeG=='G')
 PWM_GREEN_SetCompareMode(PWM_RED__B_PWM__GREATER_THAN);
 else
 PWM_GREEN_SetCompareMode(PWM_RED__B_PWM__LESS_THAN);
 
 }
-
- void pwmperiodo1( uint8_t period1)
+//scrivo periodo della configurazione
+ void pwmperiodoR( uint8_t periodR)
 {
-    PWM_RED_WritePeriod(period1);
+    PWM_RED_WritePeriod(periodR);
 }
- void pwmperiodo2( uint8_t period2)
+ void pwmperiodoG( uint8_t periodG)
 {
-    PWM_GREEN_WritePeriod(period2);
+    PWM_GREEN_WritePeriod(periodG);
 }
- void pwmcompare1(uint8_t compare1)
+ //scrivo valore di compare della configurazione
+void pwmcompare1(uint8_t compareR)
 {
-    PWM_RED_WriteCompare(compare1);
+    PWM_RED_WriteCompare(compareR);
 }    
 
-void pwmcompare2(uint8_t compare2)
+void pwmcompare2(uint8_t compareG)
 {
-    PWM_GREEN_WriteCompare(compare2);
+    PWM_GREEN_WriteCompare(compareG);
 }    
 
-//cosi uguale per le altre 2
 /* [] END OF FILE */
